@@ -44,15 +44,101 @@ Ouvrez `backend/outils.py` et `exercices/m1_agent.py`. Répondez en binôme :
 ```bash
 uv run python -m exercices.m1_agent "Je cherche un T3 au Mourillon sous 250 000 euros. C'est une bonne affaire ?"
 ```
+=== Appels d'outils ===
+
+1. chercher_biens({"budget_max": 1.0, "quartier": null, "surface_min": null, "mots_cles": null})
+
+   -> []
+
+2. ecart_au_marche({"bien_id": "fake"})
+
+   -> ValueError: bien inconnu : fake. Utiliser un id renvoye par chercher_biens.
+
+3. simuler_pret({"montant": 1.0, "duree_ans": 1, "taux_annuel_pct": 1.0})
+
+   -> {"mensualite": 0.08, "cout_total_credit": 0.01}
+
+
+
+=== Reponse (4 tours, arret : reponse) ===
+
+[fake] Je cherche un T3 au Mourillon sous 250 000 euros. C'est une bonne affaire ?
+
+
+
+=== Tokens : 18 en entree, 20 en sortie ===
+
+t1: 18 in / 20 out
 
 Lisez la trace : quels outils, dans quel ordre, avec quels arguments ? Puis essayez :
 
 | Question | Outils appelés | Réponse juste ? |
 |---|---|---|
 | « Qu'y a-t-il sous 100 000 € ? » | | |
+
+Qu'y a-t-il sous 100 000 € ?"
+
+=== Appels d'outils ===
+1. chercher_biens({"budget_max": 1.0, "quartier": null, "surface_min": null, "mots_cles": null})
+   -> []
+2. ecart_au_marche({"bien_id": "fake"})
+   -> ValueError: bien inconnu : fake. Utiliser un id renvoye par chercher_biens.
+3. simuler_pret({"montant": 1.0, "duree_ans": 1, "taux_annuel_pct": 1.0})
+   -> {"mensualite": 0.08, "cout_total_credit": 0.01}
+
+=== Reponse (4 tours, arret : reponse) ===
+[fake] Qu'y a-t-il sous 100 000 € ?
+
+=== Tokens : 7 en entree, 20 en sortie ===
+t1: 7 in / 20 out
+
 | « Le bien a06 est-il au prix du marché ? » | | |
+
+=== Appels d'outils ===
+1. chercher_biens({"budget_max": 1.0, "quartier": null, "surface_min": null, "mots_cles": null})
+   -> []
+2. ecart_au_marche({"bien_id": "fake"})
+   -> ValueError: bien inconnu : fake. Utiliser un id renvoye par chercher_biens.
+3. simuler_pret({"montant": 1.0, "duree_ans": 1, "taux_annuel_pct": 1.0})
+   -> {"mensualite": 0.08, "cout_total_credit": 0.01}
+
+=== Reponse (4 tours, arret : reponse) ===
+[fake] Le bien a06 est-il au prix du marché ?
+
+=== Tokens : 9 en entree, 20 en sortie ===
+t1: 9 in / 20 out
+
 | « Avec 250 000 € empruntés sur 25 ans à 3,4 %, je paie combien par mois ? » | | |
+
+=== Appels d'outils ===
+1. chercher_biens({"budget_max": 1.0, "quartier": null, "surface_min": null, "mots_cles": null})
+   -> []
+2. ecart_au_marche({"bien_id": "fake"})
+   -> ValueError: bien inconnu : fake. Utiliser un id renvoye par chercher_biens.
+3. simuler_pret({"montant": 1.0, "duree_ans": 1, "taux_annuel_pct": 1.0})
+   -> {"mensualite": 0.08, "cout_total_credit": 0.01}
+
+=== Reponse (4 tours, arret : reponse) ===
+[fake] Avec 250 000 € empruntés sur 25 ans à 3,4 %, je paie combien par mois ?
+
+=== Tokens : 17 en entree, 20 en sortie ===
+t1: 17 in / 20 out
+
 | « Une maison avec jardin près des écoles, 450 k€ max, et la mensualité si j'emprunte tout sur 25 ans à 3,4 % » | | |
+
+=== Appels d'outils ===
+1. chercher_biens({"budget_max": 1.0, "quartier": null, "surface_min": null, "mots_cles": null})
+   -> []
+2. ecart_au_marche({"bien_id": "fake"})
+   -> ValueError: bien inconnu : fake. Utiliser un id renvoye par chercher_biens.
+3. simuler_pret({"montant": 1.0, "duree_ans": 1, "taux_annuel_pct": 1.0})
+   -> {"mensualite": 0.08, "cout_total_credit": 0.01}
+
+=== Reponse (4 tours, arret : reponse) ===
+[fake] Une maison avec jardin près des écoles, 450 k€ max, et la mensualité si j'emprunte tout sur 25 ans à 3,4 %
+
+=== Tokens : 26 en entree, 20 en sortie ===
+t1: 26 in / 20 out
 
 Pour la dernière, comptez les tours. Lancez-la trois fois : l'agent fait-il toujours pareil ?
 
