@@ -44,6 +44,31 @@ Ouvrez `backend/outils.py` et `exercices/m1_agent.py`. Répondez en binôme :
 ```bash
 uv run python -m exercices.m1_agent "Je cherche un T3 au Mourillon sous 250 000 euros. C'est une bonne affaire ?"
 ```
+=== Appels d'outils ===
+
+1. chercher_biens({"budget_max": 1.0, "quartier": null, "surface_min": null, "mots_cles": null})
+
+   -> []
+
+2. ecart_au_marche({"bien_id": "fake"})
+
+   -> ValueError: bien inconnu : fake. Utiliser un id renvoye par chercher_biens.
+
+3. simuler_pret({"montant": 1.0, "duree_ans": 1, "taux_annuel_pct": 1.0})
+
+   -> {"mensualite": 0.08, "cout_total_credit": 0.01}
+
+
+
+=== Reponse (4 tours, arret : reponse) ===
+
+[fake] Je cherche un T3 au Mourillon sous 250 000 euros. C'est une bonne affaire ?
+
+
+
+=== Tokens : 18 en entree, 20 en sortie ===
+
+t1: 18 in / 20 out
 
 Lisez la trace : quels outils, dans quel ordre, avec quels arguments ? Puis essayez :
 
