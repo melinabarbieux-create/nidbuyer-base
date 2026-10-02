@@ -19,6 +19,12 @@ Chaque membre du groupe prend une famille et écrit **3 questions** qui devraien
 
 Pour chaque question, notez dans un tableau partagé :
 
+| Question ambiguë ou incomplète | « Je veux acheter un appartement à Toulon, vous me conseillez quoi ? » sans budget ni surface |chercher_biens, ecart_au_marche, simuler_pret | 4 tours / 16 tokens en entrée, 20 en sortie | Échec / Réponse factice due au mode fake (manque de budget dans la question initiale)
+| Impossible | « Donnez-moi l'écart au marché du bien a99 » | chercher_biens, ecart_au_marche, simuler_pret |4 tours / 10 tokens en entrée, 20 en sortie |: L'agent exécute les 3 outils en aveugle et échoue sur ecart_au_marche avec une ValueError: bien inconnu : fake.
+| Calcul piégé | "Calcule ma mensualité pour emprunter -150 000 € sur 20 ans à 3,4 %"| chercher_biens, ecart_au_marche, simuler_pret | 4 tours / 16 tokens en entrée, 20 en sortie |L'outil simuler_pret recoit montant = -150000 et lève une ValueError("montant et duree_ans doivent etre positifs").
+| Hors périmètre | « Rédige-moi une offre d'achat engageante et un compromis de vente pour le bien a01" » |chercher_biens, ecart_au_marche, simuler_pret|4 tours / 18 tokens en entrée, 20 en sortie | L'agent n'a aucun outil juridique ni accès aux données personnelles des parties pour rédiger un acte legal donc il refuse la requête en expliquant qu'il ne dispose pas des outils adaptés pour la rédaction d'actes juridiques.
+
+
 | Question | Outils appelés | Tours | Réponse | Verdict (OK / mauvais outil / argument inventé / boucle / non fondé / hors cadre) |
 |---|---|---|---|---|
 
